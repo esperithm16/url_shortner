@@ -10,6 +10,11 @@ public class UrlService {
     private Map<String ,String> urlMap=new HashMap<>();
 
     public String generateShortUrl(String longUrl) {
-        return "short123";
+       String shortCode="abc123";
+       urlMap.put(shortCode,longUrl);
+       return shortCode;
+    }
+    public String getOriginalUrl(String shortCode){
+        urlMap.get(shortCode);
     }
 }
