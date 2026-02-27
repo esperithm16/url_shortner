@@ -24,4 +24,12 @@ public class HealthController {
     public String shorten(@RequestBody UrlRequest request) {
         return urlService.generateShortUrl(request.getUrl());
     }
+    @GetMapping("/(shortCode)")
+    public String redirect(@PathVariable String shortCode){
+        String originalUrl=urlService.getOriginalUrl(shortCode);
+        if(originalUrl==null){
+            return "User not found";
+        }
+        return originalUrl;
+    }
 }
