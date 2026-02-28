@@ -15,6 +15,6 @@ public class UrlService {
        return shortCode;
     }
     public String getOriginalUrl(String shortCode){
-        urlMap.get(shortCode);
+       return urlMap.get(shortCode);
     }
 }
