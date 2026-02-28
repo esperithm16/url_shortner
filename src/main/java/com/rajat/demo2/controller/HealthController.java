@@ -2,7 +2,11 @@ package com.rajat.demo2.controller;
 
 import com.rajat.demo2.model.UrlRequest;
 import com.rajat.demo2.service.UrlService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.net.URI;
 
 @RestController
 public class HealthController {
@@ -24,12 +28,18 @@ public class HealthController {
     public String shorten(@RequestBody UrlRequest request) {
         return urlService.generateShortUrl(request.getUrl());
     }
-    @GetMapping("/(shortCode)")
-    public String redirect(@PathVariable String shortCode){
-        String originalUrl=urlService.getOriginalUrl(shortCode);
-        if(originalUrl==null){
-            return "User not found";
+    @GetMapping("/{shortCode}")
+    public ResponseEntity<Void> redirect(@PathVariable String shortCode) {
+
+        String originalUrl = urlService.getOriginalUrl(shortCode);
+
+        if (originalUrl == null) {
+            return ResponseEntity.notFound().build();
         }
-        return originalUrl;
+
+        return ResponseEntity
+                .status(HttpStatus.FOUND)
+                .location(URI.create(originalUrl))
+                .build();
     }
 }
