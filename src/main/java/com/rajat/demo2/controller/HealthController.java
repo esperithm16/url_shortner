@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -28,7 +29,9 @@ public class HealthController {
     @PostMapping("/shorten")
     public Map<String,String> shorten(@RequestBody String longUrl) {
         String shortCode=urlService.generateShortUrl(longUrl);
-
+Map<String ,String>response=new HashMap<>();
+response.put("shortUrl",shortCode);
+return response;
     }
     @GetMapping("/{shortCode}")
     public ResponseEntity<Void> redirect(@PathVariable String shortCode) {
