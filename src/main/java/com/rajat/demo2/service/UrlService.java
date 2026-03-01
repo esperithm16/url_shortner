@@ -24,7 +24,7 @@ public class UrlService {
 
        do{
            shortCode=generateRandomCode();
-       }
+       }while (urlMap.containsKey(shortCode));
 
         urlMap.put(shortCode,longUrl);
        return shortCode;
