@@ -10,14 +10,6 @@ import java.util.Random;
 public class UrlService {
     private Map<String ,String> urlMap=new HashMap<>();
 
-    public String generateShortUrl(String longUrl) {
-       String shortCode="abc123";
-       urlMap.put(shortCode,longUrl);
-       return shortCode;
-    }
-    public String getOriginalUrl(String shortCode){
-       return urlMap.get(shortCode);
-    }
     private String generateRandomCode(){
         String characters="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         StringBuilder shortCode=new StringBuilder();
@@ -27,4 +19,18 @@ public class UrlService {
         }
         return shortCode.toString();
     }
+    public String generateShortUrl(String longUrl) {
+       String shortCode;
+
+       do{
+           shortCode=generateRandomCode();
+       }
+
+        urlMap.put(shortCode,longUrl);
+       return shortCode;
+    }
+    public String getOriginalUrl(String shortCode){
+       return urlMap.get(shortCode);
+    }
+
 }
