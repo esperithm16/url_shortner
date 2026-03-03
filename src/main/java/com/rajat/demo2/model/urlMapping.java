@@ -3,7 +3,7 @@ package com.rajat.demo2.model;
 import jakarta.persistence.*;
 
 @Entity
-public class UrlMapping {
+public class urlMapping {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
