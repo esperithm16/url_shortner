@@ -25,13 +25,7 @@ public class HealthController {
     }
 
     // Day 2 API
-    @PostMapping("/shorten")
-    public Map<String,String> shorten(@RequestBody String longUrl) {
-        String shortCode=urlService.generateShortUrl(longUrl);
-Map<String ,String>response=new HashMap<>();
-response.put("shortUrl",shortCode);
-return response;
-    }
+
     @GetMapping("/{shortCode}")
     public ResponseEntity<Void> redirect(@PathVariable String shortCode) {
 

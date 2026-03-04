@@ -1,4 +1,6 @@
 POST http://localhost:8080/shorten
-Content-Type: text/plain
+Content-Type: application/json
 
-https://google.com
+{
+  "url": "https://google.com"
+}
