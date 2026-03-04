@@ -1,6 +1,5 @@
 package com.rajat.demo2.controller;
 
-import com.rajat.demo2.model.UrlRequest;
 import com.rajat.demo2.service.UrlService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
