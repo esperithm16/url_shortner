@@ -1,6 +1,7 @@
 package com.rajat.demo2.dto;
 
 public class ShortenResponse {
+
     private String shortUrl;
 
     public ShortenResponse(String shortUrl) {
@@ -9,5 +10,9 @@ public class ShortenResponse {
 
     public String getShortUrl() {
         return shortUrl;
+    }
+
+    public void setShortUrl(String shortUrl) {
+        this.shortUrl = shortUrl;
     }
 }
