@@ -1,7 +1,7 @@
 package com.rajat.demo2.service;
 
 import org.springframework.stereotype.Service;
-import com.rajat.demo2.dto.ShortenResponse;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -19,7 +19,7 @@ public class UrlService {
         }
         return shortCode.toString();
     }
-    public ShortenResponse shortenUrl(String longUrl) {
+    public String generateShortUrl(String longUrl) {
        String shortCode;
 
        do{
@@ -27,7 +27,7 @@ public class UrlService {
        }while (urlMap.containsKey(shortCode));
 
         urlMap.put(shortCode,longUrl);
-        return new ShortenResponse(shortCode);
+       return shortCode;
     }
     public String getOriginalUrl(String shortCode){
        return urlMap.get(shortCode);
