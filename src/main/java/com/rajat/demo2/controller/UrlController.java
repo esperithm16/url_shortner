@@ -1,37 +1,23 @@
-package com.rajat.demo2.controller;
+package com.yourproject.controller;
 
-import com.rajat.demo2.dto.UrlRequest;
-import com.rajat.demo2.dto.ShortenResponse;
+package com.rajat.demo2.controller;
 import com.rajat.demo2.service.UrlService;
-import jakarta.validation.Valid;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.URI;
-
 @RestController
+@RequestMapping("/api")
 public class UrlController {
 
     private final UrlService urlService;
 
-    public UrlController(UrlService urlService) {
+    public UrlController(UrlService urlService){
         this.urlService = urlService;
     }
 
     @PostMapping("/shorten")
-    public ShortenResponse shortenUrl(@Valid @RequestBody UrlRequest request) {
+    public String shortenUrl(@RequestBody String url){
 
-        return urlService.shortenUrl(request.getUrl());
-    }
-    @GetMapping("/{shortCode}")
-    public ResponseEntity<Void> redirect(@PathVariable String shortCode) {
+        return urlService.createShortUrl(url);
 
-        String originalUrl = urlService.getOriginalUrl(shortCode);
-
-        return ResponseEntity
-                .status(HttpStatus.FOUND)
-                .location(URI.create(originalUrl))
-                .build();
     }
 }
