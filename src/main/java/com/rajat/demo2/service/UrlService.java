@@ -1,49 +1,46 @@
 package com.rajat.demo2.service;
 
-import com.rajat.demo2.dto.ShortenResponse;
+import com.rajat.demo2.Repository.UrlMappingRepository;
+import com.rajat.demo2.model.UrlMapping;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 
 @Service
 public class UrlService {
 
-    private Map<String, String> urlMap = new HashMap<>();
+    private final UrlMappingRepository repository;
 
-    public ShortenResponse shortenUrl(String longUrl) {
-
-        String shortCode;
-
-        do {
-            shortCode = generateRandomCode();
-        } while (urlMap.containsKey(shortCode));
-
-        urlMap.put(shortCode, longUrl);
-
-        return new ShortenResponse(shortCode);
+    public UrlService(UrlMappingRepository repository) {
+        this.repository = repository;
     }
 
-    public String getOriginalUrl(String shortCode) {
-        return urlMap.get(shortCode);
+    public String createShortUrl(String originalUrl) {
+
+        String shortCode = generateShortCode();
+
+        UrlMapping mapping = new UrlMapping();
+        mapping.setOriginalUrl(originalUrl);
+        mapping.setShortCode(shortCode);
+
+        repository.save(mapping);
+
+        return shortCode;
     }
 
-    private String generateRandomCode() {
+    private String generateShortCode() {
 
-        String characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-
-        StringBuilder shortCode = new StringBuilder();
+        String chars =
+                "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
         Random random = new Random();
 
-        for (int i = 0; i < 6; i++) {
+        StringBuilder code = new StringBuilder();
 
-            int index = random.nextInt(characters.length());
-
-            shortCode.append(characters.charAt(index));
+        for(int i=0;i<6;i++){
+            code.append(chars.charAt(random.nextInt(chars.length())));
         }
 
-        return shortCode.toString();
+        return code.toString();
     }
 }
