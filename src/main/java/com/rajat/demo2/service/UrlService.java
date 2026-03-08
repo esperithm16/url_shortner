@@ -27,6 +27,22 @@ public class UrlService {
 
         return shortCode;
     }
+    public String getOriginalUrl(String shortCode) {
+
+        UrlMapping mapping = repository
+                .findByShortCode(shortCode)
+                .orElseThrow(() -> new RuntimeException("URL not found"));
+
+        return mapping.getOriginalUrl();
+    }
+    @Service
+    public class UrlService {
+
+        private final UrlMappingRepository repository;
+
+        public UrlService(UrlMappingRepository repository) {
+            this.repository = repository;
+        }
 
     private String generateShortCode() {
 
