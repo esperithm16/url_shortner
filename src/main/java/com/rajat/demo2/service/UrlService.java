@@ -27,6 +27,7 @@ public class UrlService {
 
         return shortCode;
     }
+
     public String getOriginalUrl(String shortCode) {
 
         UrlMapping mapping = repository
@@ -35,28 +36,18 @@ public class UrlService {
 
         return mapping.getOriginalUrl();
     }
-    @Service
-    public class UrlService {
-
-        private final UrlMappingRepository repository;
-
-        public UrlService(UrlMappingRepository repository) {
-            this.repository = repository;
-        }
 
     private String generateShortCode() {
 
-        String chars =
-                "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        String chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
         Random random = new Random();
+        StringBuilder shortCode = new StringBuilder();
 
-        StringBuilder code = new StringBuilder();
-
-        for(int i=0;i<6;i++){
-            code.append(chars.charAt(random.nextInt(chars.length())));
+        for (int i = 0; i < 6; i++) {
+            shortCode.append(chars.charAt(random.nextInt(chars.length())));
         }
 
-        return code.toString();
+        return shortCode.toString();
     }
 }

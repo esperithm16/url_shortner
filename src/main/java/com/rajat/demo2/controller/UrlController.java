@@ -1,5 +1,3 @@
-package com.yourproject.controller;
-
 package com.rajat.demo2.controller;
 import com.rajat.demo2.service.UrlService;
 import jakarta.servlet.http.HttpServletResponse;
