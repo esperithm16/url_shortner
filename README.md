@@ -8,11 +8,9 @@ It is built using Spring Boot with PostgreSQL for persistent storage and deploye
 ## Tech Stack
 
 - Java  
-- Spring Boot  
-- Spring Data JPA  
+- Spring Boot   
 - PostgreSQL  
-- Gradle  
-- AWS EC2  
+- Gradle   
 
 ## API Endpoints
 
