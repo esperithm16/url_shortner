@@ -20,11 +20,12 @@ public class UrlController {
                          HttpServletResponse response) throws IOException {
 
         String originalUrl = urlService.getOriginalUrl(shortCode);
-
         response.sendRedirect(originalUrl);
     }
     @PostMapping("/shorten")
     public String shortenUrl(@RequestBody UrlRequest request){
+        System.out.println("Controller received URL: " + request.getUrl());
+
         return urlService.createShortUrl(request.getUrl());
     }
 }

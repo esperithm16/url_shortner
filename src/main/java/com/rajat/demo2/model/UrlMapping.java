@@ -3,18 +3,19 @@ package com.rajat.demo2.model;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "url_mapping")
 public class UrlMapping {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
-    @Column(unique = true)
+    @Column(name = "short_code", unique = true)
     private String shortCode;
 
+    @Column(name = "original_url")
     private String originalUrl;
-
-    // Getters and Setters
 
     public Long getId() {
         return id;
